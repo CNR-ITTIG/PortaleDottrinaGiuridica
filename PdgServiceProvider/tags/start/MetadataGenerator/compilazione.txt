@@ -1,0 +1,28 @@
+compilazione di FeatureExtractor
+make
+make install
+
+compilazione di NaiveBayes
+make
+make install
+
+compilazione SVM
+make install
+
+compilazione htmlcxx
+./configure
+make install
+
+compilazione htmlcxx/html
+make install
+
+g++ -c Node.cc
+g++ -c Parser.cc
+
+compilazione exmeta
+g++ -c predictor.cpp
+g++ -c dirutils.cpp
+g++ -c extract.cpp
+
+g++ -o metadataGenerator predictor.o dirutils.o extract.o metadataGenerator.cpp ../FeatureExtractor/TextFeatureExtractor.o ../NaiveBayes/Classifier.o ../htmlcxx/html/Parser.o ../FeatureExtractor/Lexer/liblexer.a ../htmlcxx/html/Node.o -lregexx
+

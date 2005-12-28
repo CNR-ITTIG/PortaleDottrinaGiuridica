@@ -1,0 +1,15 @@
+Il progetto OaiHarvester è un progetto java scritto con Eclipse.
+
+Il progetto MetadataGenerator è in c++, dentro si trovano i file:
+compilazione.txt
+readme.txt
+che sono le istruzioni per la compilazione da linea di comando.
+
+
+XMLRecords è la directory in cui vengono salvati i file intermedi, quelli da indicizzare. Fa parte dello schema del Portale di Dottrina Giuridica, in realtà non contiene sorgenti.
+
+
+ATTENZIONE:
+1) Per il funzionamento del di OaiHarvester la servlet OaiDataProvider deve funzionare.
+2) Per il funzionamento di SearchInterface bisogna prima creare l'indice.
+
