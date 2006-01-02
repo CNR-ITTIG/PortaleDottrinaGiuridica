@@ -18,9 +18,9 @@ import searchInterface.util.xml.XmlDocument;
 
 public class Util {
    
-    public static Hashtable propert(String file){
+    public static Hashtable<String, String> propert(String file){
 
-        Hashtable hash=new Hashtable();
+        Hashtable<String, String> hash=new Hashtable<String, String>();
         
         try{
             Properties props=new Properties();
@@ -53,8 +53,8 @@ public class Util {
     }
    
     
-    public static Vector tokenize(String str){
-        Vector vec=new Vector();
+    public static Vector<String> tokenize(String str){
+        Vector<String> vec=new Vector<String>();
         StringTokenizer st = new StringTokenizer(str,",");
         while (st.hasMoreTokens()) {
             vec.addElement(st.nextToken().trim());            
