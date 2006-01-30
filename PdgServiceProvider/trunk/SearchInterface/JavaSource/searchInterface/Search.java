@@ -316,7 +316,7 @@ public class Search extends javax.servlet.http.HttpServlet implements
 				+ (String) hashString.get("indexFile") + " ";
 		// formatstring (extended output format)
 		sLineaComando = sLineaComando
-				+ " -x <swishrank>\\t<swishdocsize>\\t<swishdocpath>\\t<dc:title>\\t<dc:description>\\t<dc:subject>\\t<fonte>\\t<dc:source>\\t<dc:publisher>\\t<dc:creator>\\t<dc:type>\\t<dc:identifier>\\t";
+				+ " -x <swishrank>\\t<swishdocsize>\\t<swishdocpath>\\t<dc:title>\\t<dc:description>\\t<dc:subject>\\t<fonte>\\t<dc:source>\\t<dc:publisher>\\t<dc:creator>\\t<dc:type>\\t<identifier>\\t";
 
 		// Leggo e rimuovo dalla mappa il valore di target, che indica
 		// l'archivio su cui cercare
@@ -367,10 +367,12 @@ public class Search extends javax.servlet.http.HttpServlet implements
 		}
 
 //		TODO: and dc:type=( Web document) NON FUNZIONA
-		if (sltarget!=null) {
+		
+		if (sltarget!=null && !sltarget.equals(""))  {
 			if (sltarget.equals("web"))
-				sLineaComando = sLineaComando + " or 'Web document'";
-
+				sLineaComando = sLineaComando + " and dc:type=(\"Web document\")";
+			else  if (sltarget.equals("dogi"))
+				sLineaComando = sLineaComando + " and identifier=(oai:dogi.ittig.cnr.it*)";
 		}
 		// Ho costruito: sLineaComando
 		// ********************************************************

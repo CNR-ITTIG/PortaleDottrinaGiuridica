@@ -10,7 +10,7 @@
 		searchInterface.Search</servlet-class>
 		<init-param>
 	            <param-name>properties</param-name>
-	            <param-value>/home/tonix/Desktop/ServiceProvider/SearchInterface/pdgInit/pdg.properties</param-value>
+	            <param-value>/home/tonix/Desktop/PdgServiceProvider/SearchInterface/pdgInit/pdg.properties</param-value>
 		</init-param>
 	</servlet>
 	<servlet-mapping>
