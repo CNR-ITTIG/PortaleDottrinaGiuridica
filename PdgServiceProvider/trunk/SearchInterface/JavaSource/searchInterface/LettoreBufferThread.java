@@ -1,7 +1,7 @@
 package searchInterface;
 
 import java.io.IOException;
-import java.io.InputStream;
+import java.io.*;
 
 class LettoreBufferThread implements Runnable {
 	Thread t;
@@ -13,6 +13,7 @@ class LettoreBufferThread implements Runnable {
 	// leggere il buffer
 
 	private InputStream lt_outputSwishe = null;
+	private InputStreamReader isr_outputSwishe = null;
 
 	// Creo uno StringBuffer
 	StringBuffer bufferOutputSwishe = new StringBuffer();
@@ -27,6 +28,10 @@ class LettoreBufferThread implements Runnable {
 		lt_myProcess = myProcess;
 		// Ottengo il flusso di output di swish-e
 		lt_outputSwishe = lt_myProcess.getInputStream();
+		//An InputStreamReader is a bridge from byte streams to character streams:
+		//  It reads bytes and decodes them into characters using a specified charset. 
+		//Istanzion un lettore per l'oggetto InputStream
+		isr_outputSwishe=new InputStreamReader(outputSwishe);
 		t.start();
 	}
 
@@ -35,7 +40,8 @@ class LettoreBufferThread implements Runnable {
 		while (!exitflag || (icaratteriDisponibili > 0)) {
 			try {
 				int val = 0;
-				val = lt_outputSwishe.read();
+				//val = lt_outputSwishe.read();
+				val = isr_outputSwishe.read();
 				//TODO: traduzione caratteri
 				bufferOutputSwishe.append((char) val);
 				icaratteriDisponibili = lt_outputSwishe.available();

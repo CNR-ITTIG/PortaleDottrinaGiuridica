@@ -96,8 +96,7 @@ public class XmlDocument {
 
 	public XmlDocument(InputStream xml) {
 		InputSource iXml = new InputSource(xml);
-		iXml.setEncoding("ISO-8859-1");
-		// iXml.setEncoding("UTF-8");
+		iXml.setEncoding("UTF-8");
 		try {
 			parser.parse(iXml);
 		} catch (Exception ex) {

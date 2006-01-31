@@ -22,8 +22,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
-
-import searchInterface.util.generic.Util;
+import searchInterface.util.generic.*;
 import searchInterface.util.xml.*;
 
 /**
@@ -241,6 +240,7 @@ public class Search extends javax.servlet.http.HttpServlet implements
 				URL url = new URL(invoke);
 				URLConnection con = url.openConnection();
 				InputStream isOAI = con.getInputStream();
+				InputStreamReader isrOAI=new InputStreamReader(isOAI);
 				XmlDocument xmlgetrecord=new XmlDocument(isOAI);
 				return xmlgetrecord;
 			} catch (Exception ex) {
