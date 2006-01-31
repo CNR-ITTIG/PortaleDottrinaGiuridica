@@ -70,8 +70,8 @@ public class XMLTool
      */ 
     public static String output(Document doc){
         String out;
-//        out="<?xml version=\"1.0\" encoding=\"ISO-8859-1\"?>";
-        out="<?xml version=\"1.0\" encoding=\"UTF-8\"?>";
+        out="<?xml version=\"1.0\" encoding=\"ISO-8859-1\"?>";
+       // out="<?xml version=\"1.0\" encoding=\"UTF-8\"?>";
         out+=showElement(doc.getDocumentElement ());
         return out;
     }

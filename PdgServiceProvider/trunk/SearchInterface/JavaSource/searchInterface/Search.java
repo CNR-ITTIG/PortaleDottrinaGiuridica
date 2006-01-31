@@ -680,7 +680,7 @@ public class Search extends javax.servlet.http.HttpServlet implements
 					asArraySwishe.remove(0));
 			eDCMetadata.appendChild(tmpElement);
 
-			// I record web hanno Web document nel metatag dc:type
+			// I record web hanno "Web document" nel metatag dc:type
 			// I record dogi invece hanno la propria classificazione
 			// dc:type
 			String sdc_type = asArraySwishe.remove(0);
@@ -845,7 +845,6 @@ public class Search extends javax.servlet.http.HttpServlet implements
 		eUrl.appendChild(tmpElement);
 		// ***********************************
 		// ***********************************
-
 		return xml;
 	}
 

@@ -61,7 +61,7 @@ function ga(o,e) {if (document.getElementById) {var a = o.id.substring(1); var p
 									</td>
 								</tr>
 							</table>
-							<form action="http://localhost:8080/Pdg/search" method="get" name="f">
+							<form action="http://localhost:8080/SearchInterface/Search" method="get" name="f">
 								<table border="0" cellpadding="0" cellspacing="0">
 									<tr>
 										<td width="25%">

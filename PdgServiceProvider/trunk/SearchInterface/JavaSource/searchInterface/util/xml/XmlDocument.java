@@ -27,7 +27,7 @@ public class XmlDocument {
 	}
 
 	public XmlDocument(Document doc) {
-		this.root = doc;
+		this.root = doc;		
 	}
 
 	public XmlDocument(String xml) {

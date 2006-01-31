@@ -36,6 +36,7 @@ class LettoreBufferThread implements Runnable {
 			try {
 				int val = 0;
 				val = lt_outputSwishe.read();
+				//TODO: traduzione caratteri
 				bufferOutputSwishe.append((char) val);
 				icaratteriDisponibili = lt_outputSwishe.available();
 				
