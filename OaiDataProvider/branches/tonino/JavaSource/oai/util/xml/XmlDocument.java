@@ -71,7 +71,7 @@ public class XmlDocument {
 				flagUscita = true;
 			} catch (Exception ex) {
 				SAXParseException SAXEx = (SAXParseException) ex;
-				System.err.print("Errore nel file "+xml);
+				System.err.print("OaiDataProvider - Errore nel file "+xml);
 				System.err.println(" - Colonna "	+ SAXEx.getColumnNumber());
 			
 				
