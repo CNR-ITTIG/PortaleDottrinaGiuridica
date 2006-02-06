@@ -80,7 +80,7 @@ public class XMLTool
      */
    public static String showElement(Element e){
         String out;
-        out="<"+e.getNodeName ()+" ";
+        out="\n<"+e.getNodeName ()+" ";
         NamedNodeMap map=e.getAttributes();
         for (int i=0;i<map.getLength();i++)
             out+=map.item(i).getNodeName()+"=\""+map.item(i).getNodeValue()+"\" ";

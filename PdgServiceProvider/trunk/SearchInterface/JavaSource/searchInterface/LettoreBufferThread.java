@@ -6,9 +6,9 @@ import java.io.*;
 class LettoreBufferThread implements Runnable {
 	Thread t;
 
-	boolean exitflag = false;
+	private boolean exitflag = false;
 
-	boolean stopped = false; // Diventa vero quando il thread ha finito di
+	private boolean stopped = false; // Diventa vero quando il thread ha finito di
 
 	// leggere il buffer
 
@@ -16,9 +16,9 @@ class LettoreBufferThread implements Runnable {
 	private InputStreamReader isr_outputSwishe = null;
 
 	// Creo uno StringBuffer
-	StringBuffer bufferOutputSwishe = new StringBuffer();
+	private StringBuffer bufferOutputSwishe = new StringBuffer();
 
-	Process lt_myProcess = null;
+	private Process lt_myProcess = null;
 
 	LettoreBufferThread(Process myProcess, InputStream outputSwishe) {
 		t = new Thread(this, "Lettore output di swish-e");
@@ -40,13 +40,9 @@ class LettoreBufferThread implements Runnable {
 		while (!exitflag || (icaratteriDisponibili > 0)) {
 			try {
 				int val = 0;
-				//val = lt_outputSwishe.read();
 				val = isr_outputSwishe.read();
-				//TODO: traduzione caratteri
 				bufferOutputSwishe.append((char) val);
 				icaratteriDisponibili = lt_outputSwishe.available();
-				
-//				TODO: Leggere i caratteri accentati correttamente
 			} catch (IOException excp) {
 				System.out.print("\n" + excp.getLocalizedMessage());
 			}

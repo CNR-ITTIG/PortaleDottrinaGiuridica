@@ -43,8 +43,7 @@ public class Search extends javax.servlet.http.HttpServlet implements
 
 	static final long serialVersionUID=0;
 	// *************************************
-	boolean bDEBUG = false; // Impostazione predefinita. Viene comunque letta
-
+	private boolean bDEBUG = false; // Impostazione predefinita. Viene comunque letta
 	// l'impostazione dal file delle proprietà
 	// *************************************
 	private Hashtable hashString = new Hashtable();
@@ -130,7 +129,7 @@ public class Search extends javax.servlet.http.HttpServlet implements
 			// *******************************************
 			// leggo il record in XML
 			XmlDocument sRecordXML = getrecord(sTarget, sRecordName);
-			System.out.println("\n"+XMLTool.showElement(sRecordXML.getRootElement()));
+			if(bDEBUG) System.out.println("\n"+XMLTool.showElement(sRecordXML.getRootElement()));
 			// Genero la pagina di risposta
 			ResponsePage recordview=new ResponsePage(sRecordXML.getRoot());
 			recordview.writePage((String) hashString.get("styleSheetPath")
@@ -247,19 +246,11 @@ public class Search extends javax.servlet.http.HttpServlet implements
 				System.err.println("Execute ha causato un errore!!");
 				System.err.println(invoke);
 			}
-//			return bufferOutputOAIServlet.toString();
-		} else if (sDBName.equals("Web document")) {
-			String invoke = "http://" + srecordName;
-			System.out.print("Richiesta pagina web\n" + invoke);
-//			TODO:Recuperare pagina web indicata da invoke
-			String sresponse = "Costruzione pagina web che rimanda all'indirizzo <a href=\""
-					+ invoke + "\">" + invoke + "</a>";
-//			return sresponse;
+		} else if (sDBName.equals("********Altro DB*********")) {
+//			**********************************************************************************
+//			Aggiungere qui il codice per recuperare i dati da un Data Provider diverso da DoGi
+//			**********************************************************************************
 		}
-		// else if(sDBName.equals("?????")){
-		// aggiungere il codice per recuperare record da altri archivi
-		// }
-
 		return null;
 	}
 
@@ -295,7 +286,7 @@ public class Search extends javax.servlet.http.HttpServlet implements
 	// Sets the begining search result to return (records
 	// are numbered from 1).
 
-	int iCAMPI_SWISHE = 12;
+	private int iCAMPI_SWISHE = 12;
 
 	/**
 	 * Si occupa della ricerca tramite Swish-e Costruisce in modo opportuno la
@@ -364,9 +355,6 @@ public class Search extends javax.servlet.http.HttpServlet implements
 				}
 			}
 		}
-
-//		TODO: and dc:type=( Web document) NON FUNZIONA
-		
 		if (sltarget!=null && !sltarget.equals(""))  {
 			if (sltarget.equals("web"))
 				sLineaComando = sLineaComando + " and dc:type=(\"Web document\")";
@@ -596,6 +584,7 @@ public class Search extends javax.servlet.http.HttpServlet implements
 		// dc:description
 		// dc:subject
 		// fonte
+		// dc:source
 		// dc:publisher
 		// dc:creator
 		// dc:type
@@ -850,15 +839,15 @@ public class Search extends javax.servlet.http.HttpServlet implements
 	private void addDCNameSpace(Element e) {
 
 		e.setAttribute("xmlns:dc", "http://purl.org/dc/elements/1.1/");
-		e.setAttribute("xmlns:oai_dc",
-				"http://www.openarchives.org/OAI/2.0/oai_dc/");
-		e
-				.setAttribute("xmlns:xsi",
-						"http://www.w3.org/2001/XMLSchema-instance");
-		e
-				.setAttribute(
-						"xsi:schemaLocation",
-						"http://www.openarchives.org/OAI/2.0/oai_dc/ http://www.openarchives.org/OAI/2.0/oai_dc.xsd");
+//		e.setAttribute("xmlns:oai_dc",
+//				"http://www.openarchives.org/OAI/2.0/oai_dc/");
+//		e
+//				.setAttribute("xmlns:xsi",
+//						"http://www.w3.org/2001/XMLSchema-instance");
+//		e
+//				.setAttribute(
+//						"xsi:schemaLocation",
+//						"http://www.openarchives.org/OAI/2.0/oai_dc/ http://www.openarchives.org/OAI/2.0/oai_dc.xsd");
 	}
 
 	/**
