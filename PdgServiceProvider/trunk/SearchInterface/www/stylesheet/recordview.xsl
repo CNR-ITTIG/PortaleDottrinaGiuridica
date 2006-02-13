@@ -1,4 +1,4 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version='1.0' encoding='utf-8'?>
 <xsl:stylesheet exclude-result-prefixes="a dc oai_dc" version="1.0" xmlns:a="http://www.openarchives.org/OAI/2.0/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:oai_dc="http://www.openarchives.org/OAI/2.0/oai_dc/" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 	<xsl:output method="html"/>
 	<xsl:template match="/">
@@ -62,7 +62,7 @@ function ga(o,e) {if (document.getElementById) {var a = o.id.substring(1); var p
 										</tr>
 									</tbody>
 								</table>
-								<form action="http://localhost:8080/SearchInterface/Search" method="get" name="f">
+								<form action="http://localhost:8080/Pdg/search" method="get" name="f">
 									<table border="0" cellPadding="0" cellSpacing="0">
 										<tbody>
 											<tr>

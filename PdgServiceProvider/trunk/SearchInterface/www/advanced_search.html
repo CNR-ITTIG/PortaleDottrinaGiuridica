@@ -2,10 +2,13 @@
 <head>
 <meta http-equiv="content-type" content="text/html; charset=UTF-8">
 <title>ITTIG - Portale di Dottrina Giuridica - Ricerca avanzata</title>
-<style><!--
+<style>
+<!--
 body { margin-right: 1em; margin-left: 1em;}
-// --></style>
-<style><!--
+// -->
+</style>
+<style>
+<!--
 body,td,div,.p,a{font-family:arial,sans-serif }
 div,td{color:#000}
 .f,.fl:link{color:#6f6f6f}
@@ -28,18 +31,20 @@ div.n {margin-top: 1ex}
 .ch{cursor:pointer;cursor:hand}
 .e{margin-top: .75em; margin-bottom: .75em}
 .g{margin-top: 1em; margin-bottom: 1em}
-//-->
+//.Stile1 {color: #C0C0C0}
+.Stile1 {color: #C0C0C0}
+-->
 </style>
 <script><!--
-function setFocus() {document.f.as_q.focus(); }
+function setFocus() {document.f.dctitle.focus();}
 // -->
 </script>
 </head>
 <body onload="setFocus()" alink="#ff0000" bgcolor="#ffffff"
 	link="#0000cc" text="#000000" vlink="#551a8b">
 <font face="arial,sans-serif"></font>
-<form method="get" action="http://localhost:8080/SearchInterface/Search"
-	name="f"><input type="hidden" name="modo" value="0">
+<form method="get" action="http://localhost:8080/SearchInterface/Search" name="f">
+	<input type="hidden" name="modo" value="0">
 	<input size="5"	type="hidden" name="act" value="1">
 <table border="0" cellpadding="0" cellspacing="2" width="99%">
 	<tbody>
@@ -47,24 +52,16 @@ function setFocus() {document.f.as_q.focus(); }
 			<td rowspan="2" width="1%"><a href="index.html"><img
 				src="PdgSearch_files/logo_sm.gif"
 				alt="Vai alla pagina principale del Portale di Dottrina Giuridica"
-				border="0" height="50%" vspace="12"></a></td>
+				border="0" vspace="12"></a></td>
 			<td>&nbsp;</td>
 			<td rowspan="2">
-			<table border="0" cellpadding="0" cellspacing="0" width="100%">
-				<tbody>
-					<tr>
-						<td bgcolor="#3366cc"><img alt="" height="1" width="1"></td>
-					</tr>
-				</tbody>
-			</table>
+			
 			<table border="0" cellpadding="0" cellspacing="0" width="100%">
 				<tbody>
 					<tr>
 						<td bgcolor="#e5ecf9" nowrap="nowrap"><font color="#000000"
 							face="arial,sans-serif" size="+1"><b>&nbsp;Ricerca avanzata</b></font></td>
-						<td align="right" bgcolor="#e5ecf9" nowrap="nowrap"><font
-							face="arial,sans-serif" size="-1"><a href="/help.html">Suggerimenti&nbsp;per&nbsp;la&nbsp;ricerca</a>
-						</font></td>
+						<td align="right" bgcolor="#e5ecf9" nowrap="nowrap">&nbsp;</td>
 					</tr>
 				</tbody>
 			</table>
@@ -83,34 +80,30 @@ function setFocus() {document.f.as_q.focus(); }
 						<table cellpadding="2" cellspacing="0" width="100%">
 							<tbody>
 								<tr>
-									<td valign="top" width="15%"><font size="-1"><br>
-									<b>Trova risultati</b></font></td>
+									<td valign="top" width="15%"><font size="-1"><span class="Stile1"><br>
+									      <b>Trova risultati</b></span></font></td>
 									<td width="85%">
 									<table cellpadding="2" cellspacing="0" width="100%">
 										<tbody>
 											<tr>
-												<td><font size="-1">che contengano <b>tutte</b> le seguenti
-												parole</font></td>
-												<td><input value="" name="look_and" size="25" type="text"> <script>
-<!--
-document.f.as_q.focus();
-// -->
-</script></td>
+												<td><span class="Stile1"><font size="-1">che contengano <b>tutte</b> le seguenti
+												parole</font></span></td>
+												<td><input disabled value="" name="look_and" size="25" type="text"></td>
 											</tr>
 											<tr>
-												<td nowrap="nowrap"><font size="-1">che contengano la <b>seguente
-												frase</b></font></td>
-												<td><input size="25" value="" name="look_phrase" type="text"></td>
+												<td nowrap="nowrap"><span class="Stile1"><font size="-1">che contengano la <b>seguente
+												frase</b></font></span></td>
+												<td><input disabled size="25" value="" name="look_phrase" type="text"></td>
 											</tr>
 											<tr>
-												<td nowrap="nowrap"><font size="-1">che contengano <b>una
-												qualunque</b> delle seguenti parole</font></td>
-												<td><input size="25" value="" name="look_or" type="text"></td>
+												<td nowrap="nowrap"><span class="Stile1"><font size="-1">che contengano <b>una
+												qualunque</b> delle seguenti parole</font></span></td>
+												<td><input disabled size="25" value="" name="look_or" type="text"></td>
 											</tr>
 											<tr>
-												<td nowrap="nowrap"><font size="-1"><b>che non contengano</b>
-												le seguenti parole</font></td>
-												<td><input size="25" value="" name="as_notand" type="text"></td>
+												<td nowrap="nowrap"><span class="Stile1"><font size="-1"><b>che non contengano</b>
+												le seguenti parole</font></span></td>
+												<td><input disabled size="25" value="" name="as_notand" type="text"></td>
 											</tr>
 										</tbody>
 									</table>
@@ -121,49 +114,11 @@ document.f.as_q.focus();
 						</td>
 					</tr>
 					<tr bgcolor="#ffffff">
-						<td></td>
-					</tr>
-					<tr bgcolor="#ffffff">
 						<td>
-						<table cellpadding="2" cellspacing="0" width="100%">
-							<tbody>
-								<tr>
-
-								</tr>
-							</tbody>
-						</table>
+						
 						</td>
 					</tr>
-					<tr bgcolor="#ffffff">
-						<td>
-						<table cellpadding="2" cellspacing="0" width="100%">
-							<tbody>
-								<tr>
-									<td width="15%"><font size="-1"><b>Data</b></font></td>
-									<td nowrap="nowrap" width="40%"><font size="-1">Visualizza le
-									pagine Web aggiornate riferite a </font></td>
-									<td><font size="-1"><select name="look_for_time">
-										<option value="all">tutto l'archivio</option>
-										<option value="m3">Gli ultimi 3 mesi</option>
-										<option value="m6">Gli ultimi 6 mesi</option>
-										<option value="y">nell'ultimo anno</option>
-									</select></font></td>
-								</tr>
-							</tbody>
-						</table>
-						</td>
-					</tr>
-					<tr>
-						<td>
-						<table cellpadding="2" cellspacing="0" width="100%">
-							<tbody>
-								<tr>
-
-								</tr>
-							</tbody>
-						</table>
-						</td>
-					</tr>
+					
 					<tr bgcolor="#cbdced">
 						<td>
 						<table cellpadding="2" cellspacing="0" width="100%">
@@ -176,22 +131,22 @@ document.f.as_q.focus();
 										<tbody>
 											<tr>
 												<td><font size="-1">Cerca nel <b>titolo</b></font></td>
-												<td><input value="" name="dc:title" size="25"
+												<td><input value="" name="dctitle" size="25"
 													type="text"></td>
 											</tr>
 											<tr>
 												<td nowrap="nowrap"><font size="-1">Cerca nella <b>descrizione</b></font></td>
-												<td><input size="25" value="" name="dc:description"
+												<td><input size="25" value="" name="dcdescription"
 													type="text"></td>
 											</tr>
 											<tr>
 												<td nowrap="nowrap"><font size="-1">Cerca nel <b>soggetto</b></font></td>
-												<td><input size="25" value="" name="dc:subject"
+												<td><input size="25" value="" name="dcsubject"
 													type="text"></td>
 											</tr>
 											<tr>
 												<td nowrap="nowrap"><font size="-1">Cerca nell'<b>autore</b></font></td>
-												<td><input size="25" value="" name="dc:creator"
+												<td><input size="25" value="" name="dccreator"
 													type="text"></td>
 											</tr>
 										</tbody>
@@ -200,16 +155,21 @@ document.f.as_q.focus();
 								</tr>
 
 								<tr align="center">
-									<td></td>
-
-									<td align="right" valign="top"><font size="-1"><select name="rfp">
+									<td valign="middle" width="15%"><font size="-1"><b>Cerca:</b></font></td>
+<td align="left" valign="middle" colspan="2"><font size="-1">
+<input checked id="all" name="target" type="radio" value=""><label for="all">Tutti</label></input>
+<input id="web" name="target" type="radio" value="web"><label for="web">Web</label>
+<input id="dogi" name="target" type="radio" value="dogi"><label for="dogi">DoGi</label>
+</font>
+</td>
+									<td align="right" valign="middle"><font size="-1"><select name="rfp">
 										<option value="10" selected="selected">10 risultati</option>
 										<option value="20">20 risultati</option>
 										<option value="30">30 risultati</option>
 										<option value="50">50 risultati</option>
 										<option value="100">100 risultati</option>
 									</select></td>
-									<td align="left"><input name="btnG" value="Cerca" type="submit"></font></td>
+								  <td align="left"><input name="btnG" value="Cerca" type="submit"></td>
 								</tr>
 							</tbody>
 						</table>

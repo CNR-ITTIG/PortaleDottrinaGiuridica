@@ -166,22 +166,22 @@ public class Search extends javax.servlet.http.HttpServlet implements
 				// Modalità=1 OR
 				String stmp;
 
-				stmp = prepareString(request.getParameter("dc:title"), 0);
+				stmp = prepareString(request.getParameter("dctitle"), 0);
 				if (!stmp.equals("null"))
 					mapTargetLookFor.put("dc:title", prepareString(request
-							.getParameter("dc:title"), 0));
+							.getParameter("dctitle"), 0));
 
-				stmp = prepareString(request.getParameter("dc:description"), 0);
+				stmp = prepareString(request.getParameter("dcdescription"), 0);
 				if (!stmp.equals("null"))
 					mapTargetLookFor.put("dc:description", stmp);
 
-				stmp = prepareString(request.getParameter("dc:creator"), 0);
+				stmp = prepareString(request.getParameter("dccreator"), 0);
 				if (!stmp.equals("null")){
 					mapTargetLookFor.put("dc:creator", stmp);
 //					mapTargetLookFor.put("dc:publisher", stmp);
 				}
 
-				stmp = prepareString(request.getParameter("dc:subject"), 0);
+				stmp = prepareString(request.getParameter("dcsubject"), 0);
 				if (!stmp.equals("null"))
 					mapTargetLookFor.put("dc:subject", stmp);
 			}
