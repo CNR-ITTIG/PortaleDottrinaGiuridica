@@ -123,11 +123,12 @@ public class Util {
     }
     
     public static XmlDocument execute(String exec, String attrib)throws Exception{
-                
+    	System.out.println("Ingresso metodo execute");        
         URL url = new URL(exec);
         URLConnection con = url.openConnection();
-
+        System.out.println("Connessione url eseguita, esecuzione getInputStream");
         XmlDocument xml=new XmlDocument(con.getInputStream());
+        System.out.println("con.getInputStream eseguito");
         return xml;
         
    }

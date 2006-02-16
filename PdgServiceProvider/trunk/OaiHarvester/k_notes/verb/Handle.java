@@ -21,7 +21,6 @@ import k_notes.generic.*;
 public class Handle {
 
 	private ContentStore content;
-
 	public Handle(ContentStore contentStore) {
 		this.content = contentStore;
 	}
@@ -49,8 +48,9 @@ public class Handle {
 			}
 
 			System.out.print("Richiesta OAI-PMH\n" + invoke);
-
+			if(content.getContent("debug").equals("true")) System.out.println("Esecuzione richiesta");
 			xml = Util.execute(invoke, "");
+			if(content.getContent("debug").equals("true")) System.out.println("eseguita");
 			dividi(xml, content.getContent("RecordDir"));
 
 			System.out.println(" ok");
@@ -135,6 +135,8 @@ public class Handle {
 	}
 
 	private void dividi(XmlDocument xml, String dir) {
+		
+		if(content.getContent("debug").equals("true")) System.out.println("Ingresso metodo dividi");
 		Element tmp = null;
 		XmlDocument tXml = null;
 		String id = "";
@@ -147,7 +149,9 @@ public class Handle {
 			id = (tmp.getElementsByTagName("identifier").item(0))
 					.getFirstChild().getNodeValue();
 			id = id.replace('/', '_');
+			if(content.getContent("debug").equals("true")) System.out.println("Tentativo scrittura documento \""+ id+"\"su filesystem");
 			tXml.saveDocument(dir, id);
+			if(content.getContent("debug").equals("true")) System.out.println("Documento salvato");
 		}
 	}
 
