@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <Identify>
 	<repositoryName>DoGi</repositoryName>
-	<baseURL>http://80.67.119.251:8080/Oai/OAIServlet</baseURL>
+	<baseURL>http://localhost:8080/OaiDataProvider/servlet</baseURL>
 	<protocolVersion>2.0</protocolVersion>
 	<adminEmail>mailto:info@dogi.it</adminEmail>
 	<earliestDatestamp/>

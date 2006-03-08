@@ -17,13 +17,41 @@ public class DogiRecordFactory implements RecordFactory {
 
 	Hashtable hashString;
 
+	// Tabella utilizzata per memorizzare i codici di classificazione di DoGi
+	// per
+	// riempire il campo dublinCore dc:subject
+	Hashtable hashDoGiClassCode;
+
 	String SDBPATH, SDBNAME;
 
 	public DogiRecordFactory(Hashtable hashString) {
 		this.hashString = hashString;
-		// Sostituire il file OAI.properties
-		SDBPATH = hashString.get("dbPath").toString();
-		SDBNAME = hashString.get("dbPrefix").toString();
+		// Istanzion la tabella hash che deve contenere
+		// i codici di classificazione di DoGi, verranno
+		// letti da un file xml tra poco.
+		hashDoGiClassCode = new Hashtable();
+
+		SDBPATH = hashString.get("dbDogiPath").toString();
+		SDBNAME = hashString.get("dbDogiPrefix").toString();
+		// Lettura del file xml dei codici di classificazione di DoGi
+		XmlDocument xmlDoGiClassCode = new XmlDocument(hashString.get(
+				"supportPath").toString()
+				+ hashString.get("DoGiClassificationCodeFile").toString());
+
+		// Leggo i tutti tag class
+		NodeList nlDoGiCodes = xmlDoGiClassCode.getRoot().getElementsByTagName(
+				"code");
+		String sCodeName = "", sCodeValue = "";
+
+		if (nlDoGiCodes != null) {
+			for (int i = 0; i < nlDoGiCodes.getLength(); i++) {
+				sCodeName = xmlDoGiClassCode.getRoot().getElementsByTagName(
+						"class").item(i).getFirstChild().getNodeValue();
+				sCodeValue = xmlDoGiClassCode.getRoot().getElementsByTagName(
+						"value").item(i).getFirstChild().getNodeValue();
+				hashDoGiClassCode.put(sCodeName, sCodeValue);
+			}
+		}
 	}
 
 	public Node getRecord(String id) {
@@ -446,7 +474,9 @@ public class DogiRecordFactory implements RecordFactory {
 		String sClasseC = "";
 		if (nlClas != null) {
 			for (int i = 0; i < nlClas.getLength(); i++) {
-				sClasseC += getElementsText((Element) nlClas.item(i));
+				sClasseC += dogiTraslateClassificationCode(getElementsText((Element) nlClas
+						.item(i)))
+						+ " ";
 			}
 		}
 		// Creo l'elemento dc:subject ed il nodo di testo
@@ -553,6 +583,23 @@ public class DogiRecordFactory implements RecordFactory {
 		return newRootNode;
 	}
 
+	private String dogiTraslateClassificationCode(String sClassification) {
+		// TODO: ho in ingresso il codice di classificazione.
+		// Va tradotto e restituito come valore stringa
+		if (sClassification == null || sClassification.equals(""))
+			return "";
+		else {
+			String stmp = (String) hashDoGiClassCode
+					.get(sClassification.trim());
+
+			if (stmp == null || stmp.equals(""))
+				// return "";
+				return sClassification.trim();
+			else
+				return stmp;
+		}
+	}
+
 	private void addDCNameSpace(Element e) {
 
 		e.setAttribute("xmlns:dc", "http://purl.org/dc/elements/1.1/");
@@ -607,4 +654,5 @@ public class DogiRecordFactory implements RecordFactory {
 		}
 		return v;
 	}
+
 }

@@ -16,7 +16,7 @@ import oai.dataprovider.*;
     
 public class OAIServlet implements Servlet{
 
-    private Hashtable hashString=new Hashtable();
+    public Hashtable hashString=new Hashtable();
     private ServletConfig servlet_config;
     
     protected RecordFactory rf;
@@ -64,7 +64,6 @@ public class OAIServlet implements Servlet{
 	XmlDocument xd=new XmlDocument();
 	Document doc= xd.getRoot();
         
-        hashString.put("ip",addr);
 //        rf= new IRecordFactory(hashString);
 //        @author Antonino Fazio
 //        Implementazione dell'interfaccia RecordFactory per il nuovo DOGI
