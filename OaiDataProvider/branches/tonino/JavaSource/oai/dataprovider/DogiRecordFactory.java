@@ -20,16 +20,14 @@ public class DogiRecordFactory implements RecordFactory {
 	// Tabella utilizzata per memorizzare i codici di classificazione di DoGi
 	// per
 	// riempire il campo dublinCore dc:subject
-	Hashtable hashDoGiClassCode;
+	ArrayList arrayRangeDoGiClassCode;
 
 	String SDBPATH, SDBNAME;
 
 	public DogiRecordFactory(Hashtable hashString) {
 		this.hashString = hashString;
-		// Istanzion la tabella hash che deve contenere
-		// i codici di classificazione di DoGi, verranno
-		// letti da un file xml tra poco.
-		hashDoGiClassCode = new Hashtable();
+
+		arrayRangeDoGiClassCode = new ArrayList();
 
 		SDBPATH = hashString.get("dbDogiPath").toString();
 		SDBNAME = hashString.get("dbDogiPrefix").toString();
@@ -41,17 +39,25 @@ public class DogiRecordFactory implements RecordFactory {
 		// Leggo i tutti tag class
 		NodeList nlDoGiCodes = xmlDoGiClassCode.getRoot().getElementsByTagName(
 				"code");
-		String sCodeName = "", sCodeValue = "";
+		String sCodeName = "";
+		String sCode_from, sCode_to;
 
+		// Lettura del file xml ed inserimento nell'array
 		if (nlDoGiCodes != null) {
 			for (int i = 0; i < nlDoGiCodes.getLength(); i++) {
 				sCodeName = xmlDoGiClassCode.getRoot().getElementsByTagName(
-						"class").item(i).getFirstChild().getNodeValue();
-				sCodeValue = xmlDoGiClassCode.getRoot().getElementsByTagName(
 						"value").item(i).getFirstChild().getNodeValue();
-				hashDoGiClassCode.put(sCodeName, sCodeValue);
+				sCode_to = xmlDoGiClassCode.getRoot().getElementsByTagName(
+						"class_to").item(i).getFirstChild().getNodeValue();
+				sCode_from = xmlDoGiClassCode.getRoot().getElementsByTagName(
+						"class_from").item(i).getFirstChild().getNodeValue();
+
+				DoGiClassCode classDoGiCode = new DoGiClassCode(sCode_from,
+						sCode_to, sCodeName);
+				arrayRangeDoGiClassCode.add(classDoGiCode);
 			}
 		}
+
 	}
 
 	public Node getRecord(String id) {
@@ -583,21 +589,46 @@ public class DogiRecordFactory implements RecordFactory {
 		return newRootNode;
 	}
 
+	/*
+	 * Traduce il codice di classificazione di DoGi in una stringa
+	 */
 	private String dogiTraslateClassificationCode(String sClassification) {
-		// TODO: ho in ingresso il codice di classificazione.
-		// Va tradotto e restituito come valore stringa
-		if (sClassification == null || sClassification.equals(""))
-			return "";
-		else {
-			String stmp = (String) hashDoGiClassCode
-					.get(sClassification.trim());
-
-			if (stmp == null || stmp.equals(""))
-				// return "";
-				return sClassification.trim();
+		// Toglie la lettera S dalla classificazione Sxxxx
+		// Se la classificazione è del tipo Sxxxx Dyyyy viene ridotta a xxxx
+		if (sClassification != null && !sClassification.equals("")) {
+			if (sClassification.trim().length() > 5)
+				sClassification = "";
 			else
-				return stmp;
+				sClassification = sClassification.substring(1);
 		}
+
+		// Converte in intero
+		int iClassification = 0;
+		if (sClassification != null && !sClassification.equals("")) {
+			iClassification = Integer.valueOf(sClassification.trim())
+					.intValue();
+
+			Iterator iteratorDoGiCodeClassCode = arrayRangeDoGiClassCode
+					.iterator();
+			int iClass_to, iClass_from;
+			DoGiClassCode doGiCode;
+			// Iterazione array
+			while (iteratorDoGiCodeClassCode.hasNext()) {
+
+				doGiCode = (DoGiClassCode) iteratorDoGiCodeClassCode.next();
+				iClass_to = Integer.valueOf(doGiCode.svalue_to.substring(1))
+						.intValue();
+				iClass_from = Integer
+						.valueOf(doGiCode.svalue_from.substring(1)).intValue();
+
+				// Controllo range
+				if ((iClass_from <= iClassification)
+						&& (iClassification <= iClass_to)) {
+					sClassification = doGiCode.sDescription;
+				}
+			}
+		}
+		return sClassification;
 	}
 
 	private void addDCNameSpace(Element e) {
