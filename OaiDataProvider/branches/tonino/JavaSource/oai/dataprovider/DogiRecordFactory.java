@@ -593,8 +593,10 @@ public class DogiRecordFactory implements RecordFactory {
 	 * Traduce il codice di classificazione di DoGi in una stringa
 	 */
 	private String dogiTraslateClassificationCode(String sClassification) {
+//	Tengo da parte la stringa originaria per ripristinarla in caso di errore.
+		String sSaveClassification=sClassification;
 		// Toglie la lettera S dalla classificazione Sxxxx
-		// Se la classificazione è del tipo Sxxxx Dyyyy viene ridotta a xxxx
+		// Se la classificazione è del tipo Sxxxx Dyyyy viene ignorata
 		if (sClassification != null && !sClassification.equals("")) {
 			if (sClassification.trim().length() > 5)
 				sClassification = "";
@@ -605,9 +607,15 @@ public class DogiRecordFactory implements RecordFactory {
 		// Converte in intero
 		int iClassification = 0;
 		if (sClassification != null && !sClassification.equals("")) {
+			try{
 			iClassification = Integer.valueOf(sClassification.trim())
 					.intValue();
-
+			}catch(Exception ex){
+				System.err.println("Errore traduzione codifica DoGi - "+ex.getMessage());
+//				Pongo la variabile a zero e proseguo. 
+				iClassification=0;
+				sClassification=sSaveClassification;
+			}
 			Iterator iteratorDoGiCodeClassCode = arrayRangeDoGiClassCode
 					.iterator();
 			int iClass_to, iClass_from;
